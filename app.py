@@ -17,16 +17,20 @@ class ChurnPredictor:
         self.features = self.config['model']['features']
 
     def load_latest_model(self):
-        model_dir = Path(self.config['model_paths']['model']).parent
-        model_files = list(model_dir.glob('random_forest_*.joblib'))
-        latest_model = max(model_files, key=lambda x: x.stat().st_mtime)
-        return joblib.load(latest_model)
+        model_dir = Path('models/model_artifacts')
+        model_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Load model
+        model_path = model_dir / 'random_forest_model.joblib'
+        return joblib.load(model_path)
 
     def load_latest_scaler(self):
-        scaler_dir = Path(self.config['model_paths']['scaler']).parent
-        scaler_files = list(scaler_dir.glob('scaler_*.joblib'))
-        latest_scaler = max(scaler_files, key=lambda x: x.stat().st_mtime)
-        return joblib.load(latest_scaler)
+        model_dir = Path('models/model_artifacts')
+        model_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Load model
+        model_path = model_dir / 'scaler.joblib'
+        return joblib.load(model_path)
 
     def predict(self, input_data):
         # Scale the input data
