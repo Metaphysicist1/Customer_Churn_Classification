@@ -6,7 +6,7 @@ from pathlib import Path
 import logging
 
 class ChurnPredictor:
-    def __init__(self, config_path='Churn/config.yaml'):
+    def __init__(self, config_path='config.yaml'):
         # Load config
         with open(config_path, 'r') as file:
             self.config = yaml.safe_load(file)
