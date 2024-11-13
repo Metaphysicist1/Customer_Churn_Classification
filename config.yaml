@@ -1,0 +1,20 @@
+# config.yaml
+data_paths:
+  raw_data: 'Churn/data/raw/raw-telco-customer-churn.csv'
+  processed_data: 'Churn/data/processed/'
+
+model_paths:
+  model: 'Churn/models/model_artifacts/random_forest_{date}.joblib'
+  scaler: 'Churn/models/model_artifacts/scaler_{date}.joblib'
+  metrics: 'Churn/results/metrics_{date}.csv'
+  predictions: 'Churn/results/predictions_{date}.csv'
+
+model:
+  features:
+    - 'tenure'
+    - 'MonthlyCharges'
+    - 'TotalCharges'
+    - 'TotalServices'
+  test_size: 0.2
+  random_state: 42
+  n_estimators: 100

@@ -1,0 +1,46 @@
+2024-11-13 13:12:05,953 - main - INFO - Starting churn prediction pipeline
+2024-11-13 13:12:05,954 - src.data.data_loader - INFO - Initializing DataLoader
+2024-11-13 13:12:05,956 - src.data.data_loader - INFO - Loaded configuration from Churn/config.yaml
+2024-11-13 13:12:05,956 - src.data.data_processor - INFO - Initializing DataProcessor
+2024-11-13 13:12:05,956 - src.features.feature_engineering - INFO - Initializing FeatureEngineer
+2024-11-13 13:12:05,958 - main - INFO - Loading raw data
+2024-11-13 13:12:05,958 - src.data.data_loader - INFO - Loading raw data from Churn/data/raw/raw-telco-customer-churn.csv
+2024-11-13 13:12:05,980 - src.data.data_loader - INFO - Successfully loaded data with shape (7043, 21)
+2024-11-13 13:12:05,980 - main - INFO - Cleaning data
+2024-11-13 13:12:05,980 - src.data.data_processor - INFO - Starting data cleaning process
+2024-11-13 13:12:05,981 - src.data.data_processor - INFO - Initial data shape: (7043, 21)
+2024-11-13 13:12:05,989 - src.data.data_processor - INFO - Successfully converted TotalCharges to numeric
+2024-11-13 13:12:05,989 - src.data.data_processor - INFO - Data cleaning completed
+2024-11-13 13:12:05,989 - main - INFO - Transforming features
+2024-11-13 13:12:05,989 - src.data.data_processor - INFO - Starting feature transformation
+2024-11-13 13:12:05,992 - src.data.data_processor - INFO - Performing binary encoding for gender
+2024-11-13 13:12:05,993 - src.data.data_processor - INFO - Creating dummy variables for categorical columns
+2024-11-13 13:12:06,003 - src.data.data_processor - INFO - Transformation complete. New shape: (7043, 25)
+2024-11-13 13:12:06,004 - main - INFO - Engineering features
+2024-11-13 13:12:06,004 - src.features.feature_engineering - INFO - Starting feature creation
+2024-11-13 13:12:06,004 - src.features.feature_engineering - INFO - Using service columns: ['InternetService_Fiber optic', 'InternetService_No', 'Contract_One year', 'Contract_Two year']
+2024-11-13 13:12:06,006 - src.features.feature_engineering - INFO - Successfully created TotalServices feature
+2024-11-13 13:12:06,009 - src.features.feature_engineering - INFO - Successfully created tenure bins
+2024-11-13 13:12:06,009 - src.features.feature_engineering - INFO - Feature engineering complete. Final shape: (7043, 27)
+2024-11-13 13:12:06,009 - main - INFO - Raw data shape: (7043, 21)
+2024-11-13 13:12:06,009 - main - INFO - Cleaned data shape: (7043, 21)
+2024-11-13 13:12:06,009 - main - INFO - Transformed data shape: (7043, 25)
+2024-11-13 13:12:06,009 - main - INFO - Featured data shape: (7043, 27)
+2024-11-13 13:12:06,009 - main - INFO - Training model
+2024-11-13 13:12:07,074 - main - INFO - Evaluating model performance
+2024-11-13 13:12:07,081 - main - ERROR - Pipeline failed: If using all scalar values, you must pass an index
+2024-11-13 13:12:07,089 - main - ERROR - Traceback (most recent call last):
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/main.py", line 57, in main
+    evaluation_metrics = trainer.evaluate_model(y_test, predictions)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/src/models/train.py", line 111, in evaluate_model
+    metrics_df = pd.DataFrame(metrics)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/pandas/core/frame.py", line 778, in __init__
+    mgr = dict_to_mgr(data, index, columns, dtype=dtype, copy=copy, typ=manager)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 503, in dict_to_mgr
+    return arrays_to_mgr(arrays, columns, index, dtype=dtype, typ=typ, consolidate=copy)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 114, in arrays_to_mgr
+    index = _extract_index(arrays)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 667, in _extract_index
+    raise ValueError("If using all scalar values, you must pass an index")
+ValueError: If using all scalar values, you must pass an index
+

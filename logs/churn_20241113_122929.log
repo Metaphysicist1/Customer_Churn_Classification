@@ -1,0 +1,47 @@
+2024-11-13 12:29:29,597 - main - INFO - Starting churn prediction pipeline
+2024-11-13 12:29:29,598 - src.data.data_loader - INFO - Initializing DataLoader
+2024-11-13 12:29:29,600 - src.data.data_loader - INFO - Loaded configuration from Churn/config.yaml
+2024-11-13 12:29:29,600 - src.data.data_processor - INFO - Initializing DataProcessor
+2024-11-13 12:29:29,601 - src.features.feature_engineering - INFO - Initializing FeatureEngineer
+2024-11-13 12:29:29,603 - main - INFO - Loading raw data
+2024-11-13 12:29:29,603 - src.data.data_loader - INFO - Loading raw data from Churn/data/raw/raw-telco-customer-churn.csv
+2024-11-13 12:29:29,625 - src.data.data_loader - INFO - Successfully loaded data with shape (7043, 21)
+2024-11-13 12:29:29,625 - main - INFO - Cleaning data
+2024-11-13 12:29:29,625 - src.data.data_processor - INFO - Starting data cleaning process
+2024-11-13 12:29:29,626 - src.data.data_processor - INFO - Initial data shape: (7043, 21)
+2024-11-13 12:29:29,633 - src.data.data_processor - INFO - Successfully converted TotalCharges to numeric
+2024-11-13 12:29:29,633 - src.data.data_processor - INFO - Data cleaning completed
+2024-11-13 12:29:29,634 - main - INFO - Transforming features
+2024-11-13 12:29:29,634 - src.data.data_processor - INFO - Starting feature transformation
+2024-11-13 12:29:29,636 - src.data.data_processor - INFO - Performing binary encoding for gender
+2024-11-13 12:29:29,637 - src.data.data_processor - INFO - Creating dummy variables for categorical columns
+2024-11-13 12:29:29,650 - src.data.data_processor - INFO - Transformation complete. New shape: (7043, 25)
+2024-11-13 12:29:29,650 - main - INFO - Engineering features
+2024-11-13 12:29:29,650 - src.features.feature_engineering - INFO - Starting feature creation
+2024-11-13 12:29:29,651 - src.features.feature_engineering - INFO - Using service columns: ['InternetService_Fiber optic', 'InternetService_No', 'Contract_One year', 'Contract_Two year']
+2024-11-13 12:29:29,654 - src.features.feature_engineering - INFO - Successfully created TotalServices feature
+2024-11-13 12:29:29,658 - src.features.feature_engineering - INFO - Successfully created tenure bins
+2024-11-13 12:29:29,658 - src.features.feature_engineering - INFO - Feature engineering complete. Final shape: (7043, 27)
+2024-11-13 12:29:29,658 - main - INFO - Raw data shape: (7043, 21)
+2024-11-13 12:29:29,658 - main - INFO - Cleaned data shape: (7043, 21)
+2024-11-13 12:29:29,658 - main - INFO - Transformed data shape: (7043, 25)
+2024-11-13 12:29:29,658 - main - INFO - Featured data shape: (7043, 27)
+2024-11-13 12:29:29,658 - main - INFO - Training model
+2024-11-13 12:29:30,843 - main - ERROR - Pipeline failed: pos_label=1 is not a valid label. It should be one of ['No', 'Yes']
+2024-11-13 12:29:30,845 - main - ERROR - Traceback (most recent call last):
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/main.py", line 50, in main
+    model, scaler, metrics = trainer.train_model(X_train, y_train)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/src/models/train.py", line 58, in train_model
+    'precision': precision_score(y_train, y_pred),
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/utils/_param_validation.py", line 213, in wrapper
+    return func(*args, **kwargs)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/metrics/_classification.py", line 2204, in precision_score
+    p, _, _, _ = precision_recall_fscore_support(
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/utils/_param_validation.py", line 186, in wrapper
+    return func(*args, **kwargs)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/metrics/_classification.py", line 1789, in precision_recall_fscore_support
+    labels = _check_set_wise_labels(y_true, y_pred, average, labels, pos_label)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/metrics/_classification.py", line 1569, in _check_set_wise_labels
+    raise ValueError(
+ValueError: pos_label=1 is not a valid label. It should be one of ['No', 'Yes']
+

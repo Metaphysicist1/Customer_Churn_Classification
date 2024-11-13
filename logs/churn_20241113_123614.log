@@ -1,0 +1,30 @@
+2024-11-13 12:36:14,005 - main - INFO - Starting churn prediction pipeline
+2024-11-13 12:36:14,006 - src.data.data_loader - INFO - Initializing DataLoader
+2024-11-13 12:36:14,009 - src.data.data_loader - INFO - Loaded configuration from Churn/config.yaml
+2024-11-13 12:36:14,009 - src.data.data_processor - INFO - Initializing DataProcessor
+2024-11-13 12:36:14,010 - src.features.feature_engineering - INFO - Initializing FeatureEngineer
+2024-11-13 12:36:14,012 - main - INFO - Loading raw data
+2024-11-13 12:36:14,012 - src.data.data_loader - INFO - Loading raw data from Churn/data/raw/raw-telco-customer-churn.csv
+2024-11-13 12:36:14,041 - src.data.data_loader - INFO - Successfully loaded data with shape (7043, 21)
+2024-11-13 12:36:14,041 - main - INFO - Cleaning data
+2024-11-13 12:36:14,041 - src.data.data_processor - INFO - Starting data cleaning process
+2024-11-13 12:36:14,042 - src.data.data_processor - INFO - Initial data shape: (7043, 21)
+2024-11-13 12:36:14,054 - src.data.data_processor - INFO - Successfully converted TotalCharges to numeric
+2024-11-13 12:36:14,054 - src.data.data_processor - INFO - Data cleaning completed
+2024-11-13 12:36:14,054 - main - INFO - Transforming features
+2024-11-13 12:36:14,054 - src.data.data_processor - INFO - Starting feature transformation
+2024-11-13 12:36:14,057 - src.data.data_processor - INFO - Performing binary encoding for gender
+2024-11-13 12:36:14,059 - src.data.data_processor - INFO - Creating dummy variables for categorical columns
+2024-11-13 12:36:14,070 - src.data.data_processor - INFO - Transformation complete. New shape: (7043, 25)
+2024-11-13 12:36:14,070 - main - INFO - Engineering features
+2024-11-13 12:36:14,070 - src.features.feature_engineering - INFO - Starting feature creation
+2024-11-13 12:36:14,071 - src.features.feature_engineering - INFO - Using service columns: ['InternetService_Fiber optic', 'InternetService_No', 'Contract_One year', 'Contract_Two year']
+2024-11-13 12:36:14,074 - src.features.feature_engineering - INFO - Successfully created TotalServices feature
+2024-11-13 12:36:14,077 - src.features.feature_engineering - INFO - Successfully created tenure bins
+2024-11-13 12:36:14,077 - src.features.feature_engineering - INFO - Feature engineering complete. Final shape: (7043, 27)
+2024-11-13 12:36:14,077 - main - INFO - Raw data shape: (7043, 21)
+2024-11-13 12:36:14,078 - main - INFO - Cleaned data shape: (7043, 21)
+2024-11-13 12:36:14,078 - main - INFO - Transformed data shape: (7043, 25)
+2024-11-13 12:36:14,078 - main - INFO - Featured data shape: (7043, 27)
+2024-11-13 12:36:14,078 - main - INFO - Training model
+2024-11-13 12:36:15,338 - main - INFO - Pipeline completed successfully

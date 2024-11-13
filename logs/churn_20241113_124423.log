@@ -1,0 +1,38 @@
+2024-11-13 12:44:23,179 - main - INFO - Starting churn prediction pipeline
+2024-11-13 12:44:23,180 - src.data.data_loader - INFO - Initializing DataLoader
+2024-11-13 12:44:23,182 - src.data.data_loader - INFO - Loaded configuration from Churn/config.yaml
+2024-11-13 12:44:23,182 - src.data.data_processor - INFO - Initializing DataProcessor
+2024-11-13 12:44:23,182 - src.features.feature_engineering - INFO - Initializing FeatureEngineer
+2024-11-13 12:44:23,184 - main - INFO - Loading raw data
+2024-11-13 12:44:23,184 - src.data.data_loader - INFO - Loading raw data from Churn/data/raw/raw-telco-customer-churn.csv
+2024-11-13 12:44:23,217 - src.data.data_loader - INFO - Successfully loaded data with shape (7043, 21)
+2024-11-13 12:44:23,217 - main - INFO - Cleaning data
+2024-11-13 12:44:23,217 - src.data.data_processor - INFO - Starting data cleaning process
+2024-11-13 12:44:23,218 - src.data.data_processor - INFO - Initial data shape: (7043, 21)
+2024-11-13 12:44:23,232 - src.data.data_processor - INFO - Successfully converted TotalCharges to numeric
+2024-11-13 12:44:23,233 - src.data.data_processor - INFO - Data cleaning completed
+2024-11-13 12:44:23,233 - main - INFO - Transforming features
+2024-11-13 12:44:23,233 - src.data.data_processor - INFO - Starting feature transformation
+2024-11-13 12:44:23,237 - src.data.data_processor - INFO - Performing binary encoding for gender
+2024-11-13 12:44:23,240 - src.data.data_processor - INFO - Creating dummy variables for categorical columns
+2024-11-13 12:44:23,253 - src.data.data_processor - INFO - Transformation complete. New shape: (7043, 25)
+2024-11-13 12:44:23,254 - main - INFO - Engineering features
+2024-11-13 12:44:23,254 - src.features.feature_engineering - INFO - Starting feature creation
+2024-11-13 12:44:23,255 - src.features.feature_engineering - INFO - Using service columns: ['InternetService_Fiber optic', 'InternetService_No', 'Contract_One year', 'Contract_Two year']
+2024-11-13 12:44:23,258 - src.features.feature_engineering - INFO - Successfully created TotalServices feature
+2024-11-13 12:44:23,262 - src.features.feature_engineering - INFO - Successfully created tenure bins
+2024-11-13 12:44:23,262 - src.features.feature_engineering - INFO - Feature engineering complete. Final shape: (7043, 27)
+2024-11-13 12:44:23,262 - main - INFO - Raw data shape: (7043, 21)
+2024-11-13 12:44:23,262 - main - INFO - Cleaned data shape: (7043, 21)
+2024-11-13 12:44:23,262 - main - INFO - Transformed data shape: (7043, 25)
+2024-11-13 12:44:23,262 - main - INFO - Featured data shape: (7043, 27)
+2024-11-13 12:44:23,262 - main - INFO - Training model
+2024-11-13 12:44:24,714 - main - INFO - Evaluating model performance
+2024-11-13 12:44:24,715 - main - ERROR - Pipeline failed: y contains previously unseen labels: ['No' 'Yes']
+2024-11-13 12:44:24,715 - main - ERROR - Traceback (most recent call last):
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/main.py", line 54, in main
+    y_test = le.inverse_transform(y_test)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/preprocessing/_label.py", line 160, in inverse_transform
+    raise ValueError("y contains previously unseen labels: %s" % str(diff))
+ValueError: y contains previously unseen labels: ['No' 'Yes']
+

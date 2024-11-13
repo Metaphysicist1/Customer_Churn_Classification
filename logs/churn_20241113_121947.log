@@ -1,0 +1,44 @@
+2024-11-13 12:19:47,379 - main - INFO - Starting churn prediction pipeline
+2024-11-13 12:19:47,379 - src.data.data_loader - INFO - Initializing DataLoader
+2024-11-13 12:19:47,382 - src.data.data_loader - INFO - Loaded configuration from Churn/config.yaml
+2024-11-13 12:19:47,382 - src.data.data_processor - INFO - Initializing DataProcessor
+2024-11-13 12:19:47,382 - src.features.feature_engineering - INFO - Initializing FeatureEngineer
+2024-11-13 12:19:47,384 - main - INFO - Loading raw data
+2024-11-13 12:19:47,384 - src.data.data_loader - INFO - Loading raw data from Churn/data/raw/raw-telco-customer-churn.csv
+2024-11-13 12:19:47,414 - src.data.data_loader - INFO - Successfully loaded data with shape (7043, 21)
+2024-11-13 12:19:47,415 - main - INFO - Cleaning data
+2024-11-13 12:19:47,415 - src.data.data_processor - INFO - Starting data cleaning process
+2024-11-13 12:19:47,415 - src.data.data_processor - INFO - Initial data shape: (7043, 21)
+2024-11-13 12:19:47,424 - src.data.data_processor - INFO - Successfully converted TotalCharges to numeric
+2024-11-13 12:19:47,424 - src.data.data_processor - INFO - Data cleaning completed
+2024-11-13 12:19:47,424 - main - INFO - Transforming features
+2024-11-13 12:19:47,424 - src.data.data_processor - INFO - Starting feature transformation
+2024-11-13 12:19:47,427 - src.data.data_processor - INFO - Performing binary encoding for gender
+2024-11-13 12:19:47,428 - src.data.data_processor - INFO - Creating dummy variables for categorical columns
+2024-11-13 12:19:47,437 - src.data.data_processor - INFO - Transformation complete. New shape: (7043, 25)
+2024-11-13 12:19:47,437 - main - INFO - Engineering features
+2024-11-13 12:19:47,437 - src.features.feature_engineering - INFO - Starting feature creation
+2024-11-13 12:19:47,438 - src.features.feature_engineering - INFO - Using service columns: ['InternetService_Fiber optic', 'InternetService_No', 'Contract_One year', 'Contract_Two year']
+2024-11-13 12:19:47,440 - src.features.feature_engineering - INFO - Successfully created TotalServices feature
+2024-11-13 12:19:47,442 - src.features.feature_engineering - INFO - Successfully created tenure bins
+2024-11-13 12:19:47,443 - src.features.feature_engineering - INFO - Feature engineering complete. Final shape: (7043, 27)
+2024-11-13 12:19:47,443 - main - INFO - Raw data shape: (7043, 21)
+2024-11-13 12:19:47,443 - main - INFO - Cleaned data shape: (7043, 21)
+2024-11-13 12:19:47,443 - main - INFO - Transformed data shape: (7043, 25)
+2024-11-13 12:19:47,443 - main - INFO - Featured data shape: (7043, 27)
+2024-11-13 12:19:47,443 - main - INFO - Training model
+2024-11-13 12:19:47,443 - main - INFO - Pipeline completed successfully
+2024-11-13 12:19:47,445 - main - ERROR - Pipeline failed: "['AvgChargePerService'] not in index"
+2024-11-13 12:19:47,449 - main - ERROR - Traceback (most recent call last):
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/main.py", line 46, in main
+    data = trainer.prepare_data(featured_data)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/src/models/train.py", line 17, in prepare_data
+    X = df[features]
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/pandas/core/frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['AvgChargePerService'] not in index"
+

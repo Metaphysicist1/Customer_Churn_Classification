@@ -1,0 +1,7 @@
+2024-11-13 12:14:56,783 - main - INFO - Starting churn prediction pipeline
+2024-11-13 12:14:56,784 - main - ERROR - Pipeline failed: name 'DataLoader' is not defined
+2024-11-13 12:14:56,784 - main - ERROR - Traceback (most recent call last):
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/main.py", line 10, in main
+    loader = DataLoader()
+NameError: name 'DataLoader' is not defined
+

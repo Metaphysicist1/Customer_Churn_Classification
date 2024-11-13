@@ -1,0 +1,58 @@
+2024-11-13 12:32:22,425 - main - INFO - Starting churn prediction pipeline
+2024-11-13 12:32:22,425 - src.data.data_loader - INFO - Initializing DataLoader
+2024-11-13 12:32:22,427 - src.data.data_loader - INFO - Loaded configuration from Churn/config.yaml
+2024-11-13 12:32:22,427 - src.data.data_processor - INFO - Initializing DataProcessor
+2024-11-13 12:32:22,427 - src.features.feature_engineering - INFO - Initializing FeatureEngineer
+2024-11-13 12:32:22,429 - main - INFO - Loading raw data
+2024-11-13 12:32:22,429 - src.data.data_loader - INFO - Loading raw data from Churn/data/raw/raw-telco-customer-churn.csv
+2024-11-13 12:32:22,457 - src.data.data_loader - INFO - Successfully loaded data with shape (7043, 21)
+2024-11-13 12:32:22,457 - main - INFO - Cleaning data
+2024-11-13 12:32:22,457 - src.data.data_processor - INFO - Starting data cleaning process
+2024-11-13 12:32:22,458 - src.data.data_processor - INFO - Initial data shape: (7043, 21)
+2024-11-13 12:32:22,467 - src.data.data_processor - INFO - Successfully converted TotalCharges to numeric
+2024-11-13 12:32:22,467 - src.data.data_processor - INFO - Data cleaning completed
+2024-11-13 12:32:22,467 - main - INFO - Transforming features
+2024-11-13 12:32:22,467 - src.data.data_processor - INFO - Starting feature transformation
+2024-11-13 12:32:22,470 - src.data.data_processor - INFO - Performing binary encoding for gender
+2024-11-13 12:32:22,471 - src.data.data_processor - INFO - Creating dummy variables for categorical columns
+2024-11-13 12:32:22,481 - src.data.data_processor - INFO - Transformation complete. New shape: (7043, 25)
+2024-11-13 12:32:22,481 - main - INFO - Engineering features
+2024-11-13 12:32:22,481 - src.features.feature_engineering - INFO - Starting feature creation
+2024-11-13 12:32:22,482 - src.features.feature_engineering - INFO - Using service columns: ['InternetService_Fiber optic', 'InternetService_No', 'Contract_One year', 'Contract_Two year']
+2024-11-13 12:32:22,484 - src.features.feature_engineering - INFO - Successfully created TotalServices feature
+2024-11-13 12:32:22,487 - src.features.feature_engineering - INFO - Successfully created tenure bins
+2024-11-13 12:32:22,487 - src.features.feature_engineering - INFO - Feature engineering complete. Final shape: (7043, 27)
+2024-11-13 12:32:22,487 - main - INFO - Raw data shape: (7043, 21)
+2024-11-13 12:32:22,487 - main - INFO - Cleaned data shape: (7043, 21)
+2024-11-13 12:32:22,487 - main - INFO - Transformed data shape: (7043, 25)
+2024-11-13 12:32:22,487 - main - INFO - Featured data shape: (7043, 27)
+2024-11-13 12:32:22,487 - main - INFO - Training model
+2024-11-13 12:32:23,563 - main - ERROR - Pipeline failed: Labels in y_true and y_pred should be of the same type. Got y_true=['No' 'Yes'] and y_pred=[0 1]. Make sure that the predictions provided by the classifier coincides with the true labels.
+2024-11-13 12:32:23,566 - main - ERROR - Traceback (most recent call last):
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/metrics/_classification.py", line 131, in _check_targets
+    unique_values = _union1d(y_true, y_pred, xp)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/utils/_array_api.py", line 184, in _union1d
+    return xp.asarray(numpy.union1d(a, b))
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/numpy/lib/_arraysetops_impl.py", line 1176, in union1d
+    return unique(np.concatenate((ar1, ar2), axis=None))
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/numpy/lib/_arraysetops_impl.py", line 291, in unique
+    ret = _unique1d(ar, return_index, return_inverse, return_counts,
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/numpy/lib/_arraysetops_impl.py", line 358, in _unique1d
+    ar.sort()
+TypeError: '<' not supported between instances of 'int' and 'str'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/main.py", line 50, in main
+    model, scaler, metrics = trainer.train_model(X_train, y_train)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/src/models/train.py", line 59, in train_model
+    'accuracy': accuracy_score(y_train, y_pred),
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/utils/_param_validation.py", line 213, in wrapper
+    return func(*args, **kwargs)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/metrics/_classification.py", line 231, in accuracy_score
+    y_type, y_true, y_pred = _check_targets(y_true, y_pred)
+  File "/home/metaphysicist/Coding/Interview_Prep/Orbi/Churn/.env/lib/python3.10/site-packages/sklearn/metrics/_classification.py", line 137, in _check_targets
+    raise TypeError(
+TypeError: Labels in y_true and y_pred should be of the same type. Got y_true=['No' 'Yes'] and y_pred=[0 1]. Make sure that the predictions provided by the classifier coincides with the true labels.
+
